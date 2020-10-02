@@ -25,8 +25,7 @@ class SubnetUtils:
         if (subnet_diff+self.prefixlen) > self.max_prefixlen:
             raise ValueError('Unable to divide %s into %s subnets.' % (self, parts))
 
-        for subnet in self.subnets(prefixlen_diff=subnet_diff):
-            yield subnet
+        yield from self.subnets(prefixlen_diff=subnet_diff)
 
     def random_ip(self):
         """Returns a random IP from this subnet"""
