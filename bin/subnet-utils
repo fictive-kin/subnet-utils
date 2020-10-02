@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Show subnets information.
+
+Given an IP network in CIDR notation and the minimum number of desired subnets,
+this script will provide the relevant information about the desired subnets.
+
+Example:
+    $ ./subnet-divider.py 10.10.0.34/16 4
+    $ ./subnet-divider.py fd3e:48fe:59b2:43ca::/64 15
+
+Adapted from:
+    https://github.com/eyablokov/subnet-divider
+"""
+
+import sys
+
+from subnet import ip_network
+
+
+# Get the main network, to divide onto predefined parts
+net = ip_network(sys.argv[1], strict=False)
+
+# Get the require number of subnets to which the network will be divided
+parts = int(sys.argv[2])
+
+for subnet in net.divide(parts):
+    # Print information, mapping integer lists to strings for easy printing
+    print("")
+    print(f"CIDR:       {subnet}")
+    print(f"Netmask:    {subnet.netmask}")
+    print(f"Network:    {subnet.network_address}")
+    if subnet.num_addresses == 1:
+        print(f"Host Count: 1")
+    else:
+        print(f"Gateway:    {subnet.network_address+1}")
+        print(f"Broadcast:  {subnet.broadcast_address}")
+        print(f"Host Count: {subnet.num_addresses-1}")
