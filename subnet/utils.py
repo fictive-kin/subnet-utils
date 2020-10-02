@@ -31,6 +31,8 @@ class SubnetUtilsMixin:
 
         yield from self.subnets(prefixlen_diff=subnet_diff)
 
+    __truediv__ = divide
+
     def random_ip(self):
         """Returns a random IP from this subnet"""
 
