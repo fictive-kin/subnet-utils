@@ -34,3 +34,13 @@ Divide a subnet into useful chunks (as evenly as plausible)::
 Get a random ip from a subnet::
 
     print(my_subnet.random_ip())
+
+
+Command line usage
+------------------
+
+It is also possible to perform various tasks from the command line directly::
+
+    $ network-divide 10.0.0.0/8 4
+    $ network-random-ip fd3e:48fe:59b2:43ca::/64
+    $ network-info 192.168.0.0/24
