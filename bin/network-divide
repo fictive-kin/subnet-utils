@@ -5,25 +5,25 @@ Given an IP network in CIDR notation and the minimum number of desired subnets,
 this script will provide the relevant information about the desired subnets.
 
 Example:
-    $ ./subnet-divider.py 10.10.0.34/16 4
-    $ ./subnet-divider.py fd3e:48fe:59b2:43ca::/64 15
+    $ network-divide 10.10.0.34/16 4
+    $ network-divide fd3e:48fe:59b2:43ca::/64 15
 
-Adapted from:
-    https://github.com/eyablokov/subnet-divider
 """
 
-import sys
+import argparse
 
 from subnet import ip_network
 
 
-# Get the main network, to divide onto predefined parts
-net = ip_network(sys.argv[1], strict=False)
+parser = argparse.ArgumentParser(description='Divide a network into the desired amount of subnets, maintaining an even distribution of size across all subnets. This means that there could be _more_ than the desired amount of subnets, but never less.')
+parser.add_argument('network', type=str, help='the network to divide')
+parser.add_argument('parts', type=int, help='the amount of subnets desired')
 
-# Get the require number of subnets to which the network will be divided
-parts = int(sys.argv[2])
+args = parser.parse_args()
 
-for subnet in net.divide(parts):
+net = ip_network(args.network, strict=False)
+
+for subnet in net.divide(args.parts):
     # Print information, mapping integer lists to strings for easy printing
     print("")
     print(f"CIDR:       {subnet}")

@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Get a random IP
+
+Given an IP network in CIDR notation, return a random IP from within it.
+
+Example:
+    $ network-random-ip 10.10.0.34/16
+    $ network-random-ip fd3e:48fe:59b2:43ca::/64
+
+"""
+
+import argparse
+
+from subnet import ip_network
+
+
+parser = argparse.ArgumentParser(description='Return a random IP from the given network')
+parser.add_argument('network', type=str, help='the network to get an IP from')
+
+args = parser.parse_args()
+
+net = ip_network(args.network, strict=False)
+
+print(net.random_ip())

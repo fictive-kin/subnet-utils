@@ -9,7 +9,7 @@ def readme():
 
 name = 'subnet-utils'
 description = 'Subnet Utilities'
-version = '0.1.0'
+version = '0.3.0'
 author = 'Fictive Kin LLC'
 email = 'hello@fictivekin.com'
 classifiers = [
@@ -42,6 +42,8 @@ if __name__ == "__main__":
         ],
         install_requires=[],
         scripts=[
-            'bin/subnet-utils',
+            'bin/network-divide',
+            'bin/network-info',
+            'bin/network-random-ip',
         ],
     )
