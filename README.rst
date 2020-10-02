@@ -12,14 +12,14 @@ Example usage
 
 Create a subnet object::
 
-    from subnet import ip_network, IPv4Network, IPv6Network
+    from subnet import ip_network, IPv4Subnet, IPv6Subnet
 
     # The simple way takes either IPv4 or IPv6 CIDR notation
     my_subnet = ip_network('10.10.0.0/16')
 
     # The specific type way
-    my_ipv4_subnet = IPv4Network('10.10.0.0/16')
-    my_ipv6_subnet = IPv6Network('fd3e:48fe:59b2:43ca::/64')
+    my_ipv4_subnet = IPv4Subnet('10.10.0.0/16')
+    my_ipv6_subnet = IPv6Subnet('fd3e:48fe:59b2:43ca::/64')
 
 
 Divide a subnet into useful chunks (as evenly as plausible)::
