@@ -15,7 +15,10 @@ import argparse
 from subnet import ip_network
 
 
-parser = argparse.ArgumentParser(description='Divide a network into the desired amount of subnets, maintaining an even distribution of size across all subnets. This means that there could be _more_ than the desired amount of subnets, but never less.')
+parser = argparse.ArgumentParser(
+    description='Divide a network into the desired amount of subnets, maintaining an even'
+                ' distribution of size across all subnets. This means that there could be'
+                ' _more_ than the desired amount of subnets, but never less.')
 parser.add_argument('network', type=str, help='the network to divide')
 parser.add_argument('parts', type=int, help='the amount of subnets desired')
 
@@ -24,7 +27,6 @@ args = parser.parse_args()
 net = ip_network(args.network, strict=False)
 
 for subnet in net.divide(args.parts):
-    # Print information, mapping integer lists to strings for easy printing
     print("")
     print(f"CIDR:       {subnet}")
     print(f"Netmask:    {subnet.netmask}")

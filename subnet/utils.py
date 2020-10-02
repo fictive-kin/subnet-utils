@@ -1,11 +1,15 @@
 
-import ipaddress
+from ipaddress import (
+    IPv4Network as builtin_IPv4Network,
+    IPv6Network as builtin_IPv6Network,
+    ip_address as builtin_ip_address,
+)
 import math
 
 from random import randint
 
 
-class SubnetUtils:
+class SubnetUtilsMixin:
 
     def divide(self, parts):
         """ Generator to return the resulting subnets after dividing a main network """
@@ -34,12 +38,12 @@ class SubnetUtils:
             int(self.network_address)+1,
             int(self.broadcast_address)-1)
 
-        return ipaddress.ip_address(random_address)
+        return builtin_ip_address(random_address)
 
 
-class IPv4Subnet(ipaddress.IPv4Network, SubnetUtils):
+class IPv4Network(builtin_IPv4Network, SubnetUtilsMixin):
     pass
 
 
-class IPv6Subnet(ipaddress.IPv6Network, SubnetUtils):
+class IPv6Network(builtin_IPv6Network, SubnetUtilsMixin):
     pass
