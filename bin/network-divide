@@ -14,7 +14,6 @@ import argparse
 
 from subnet import ip_network
 
-
 parser = argparse.ArgumentParser(
     description='Divide a network into the desired amount of subnets, maintaining an even'
                 ' distribution of size across all subnets. This means that there could be'
@@ -31,9 +30,10 @@ for subnet in net.divide(args.parts):
     print(f"CIDR:       {subnet}")
     print(f"Netmask:    {subnet.netmask}")
     print(f"Network:    {subnet.network_address}")
-    if subnet.num_addresses == 1:
-        print(f"Host Count: 1")
-    else:
-        print(f"Gateway:    {subnet.network_address+1}")
+
+    if subnet.version == 4 and subnet.num_addresses > 2:
         print(f"Broadcast:  {subnet.broadcast_address}")
-        print(f"Host Count: {subnet.num_addresses-1}")
+        print(f"Gateway:    {subnet.network_address + 1}")
+        print(f"Host Count: {subnet.num_addresses - 2}")  # exclude network and broadcast address
+    else:
+        print(f"Host Count: {subnet.num_addresses}")  # IPv4 RFC 3021 exception and IPv6 in general
