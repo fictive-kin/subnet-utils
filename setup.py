@@ -20,6 +20,7 @@ classifiers = [
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
     'Topic :: Software Development',
 ]
 
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         maintainer=author,
         maintainer_email=email,
         license='MIT',
-        python_requires=">=3.4",
+        python_requires=">=3.6",
         packages=[
             'subnet',
         ],
