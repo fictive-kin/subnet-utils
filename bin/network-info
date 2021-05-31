@@ -24,9 +24,10 @@ net = ip_network(args.network, strict=False)
 print(f"CIDR:       {net}")
 print(f"Netmask:    {net.netmask}")
 print(f"Network:    {net.network_address}")
-if net.num_addresses == 1:
-    print(f"Host Count: 1")
-else:
-    print(f"Gateway:    {net.network_address+1}")
+
+if net.version == 4 and net.num_addresses > 2:
     print(f"Broadcast:  {net.broadcast_address}")
-    print(f"Host Count: {net.num_addresses-1}")
+    print(f"Gateway:    {net.network_address + 1}")
+    print(f"Host Count: {net.num_addresses - 2}")  # exclude network and broadcast address
+else:
+    print(f"Host Count: {net.num_addresses}")  # IPv4 RFC 3021 exception and IPv6 in general
