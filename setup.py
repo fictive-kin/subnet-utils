@@ -9,7 +9,7 @@ def readme():
 
 name = 'subnet-utils'
 description = 'Subnet Utilities'
-version = '0.5.0'
+version = '0.5.1'
 author = 'Fictive Kin LLC'
 email = 'hello@fictivekin.com'
 classifiers = [
